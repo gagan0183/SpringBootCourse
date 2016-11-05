@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="helloWorldFactory" class="com.spring.factory.HelloWorldFactory"></bean>
+	
+	<bean id="french" factory-bean="helloWorldFactory" factory-method="createHelloWorldService">
+		<constructor-arg value="fr"></constructor-arg>
+	</bean>
+	
+	<bean id="helloWorldServiceGer" factory-bean="helloWorldFactory" factory-method="createHelloWorldService">
+		<constructor-arg value="gr"></constructor-arg>
+	</bean>
+	
+	<beans profile="english">
+		<import resource="classpath:english-hello-config.xml"/>
+	</beans>
+	
+	<beans profile="spanish">
+		<import resource="classpath:spanish-hello-config.xml"/>
+	</beans>
+
+</beans>
